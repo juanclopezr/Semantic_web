@@ -1,4 +1,5 @@
 from requests import get as get_request
+from time import sleep
 
 GENERAL_FIELDS = [
     'paperId',
@@ -78,10 +79,14 @@ def request_semantic_scholar(title, fields: str = 'title,authors,venue,year,open
 
     # Realiza la solicitud a la API de Semantic Scholar.
     response = get_request(url, params=query_params, headers=headers)
+    
+    res = response.json()
+    res['status_code'] = response.status_code
 
     # Verifica el código de estado de la respuesta.
-    if response.status_code != 200:
+    if res['status_code'] != 200:
         print(f"Failed request for: {title}")
+            
 
     # Retorna la respuesta en formato JSON.
-    return response.json()
+    return res
