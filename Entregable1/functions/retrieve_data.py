@@ -3,7 +3,7 @@ from time import sleep
 
 GENERAL_FIELDS = [
     'paperId',
-    'corpusId',
+    'corpusId', # Su tipado es inconsistente, podría traer errores.
     'url',
     'title',
     'venue',
@@ -26,7 +26,7 @@ GENERAL_FIELDS = [
 
 AUTHORS_FIELDS = [
     'authorId',
-    'externalIds',
+    'externalIds', # No siempre esta presente, podría traer errores.
     'url',
     'name',
     'aliases',
@@ -70,7 +70,7 @@ def request_semantic_scholar(title, fields: str = 'title,authors,venue,year,open
         'query': title,  # Título del paper a buscar.
         'fields': fields,  # Campos específicos a retornar en la respuesta.
         # Limita el número de resultados retornados a 5 para mantener la respuesta manejable.
-        'limit': '5',
+        'limit': '3',
         # 'openAccessPdf':'' # No funciona. De cualquier manera, podría sernos útil obtener la info del paper aunque no sea de acceso abierto
     }
 
