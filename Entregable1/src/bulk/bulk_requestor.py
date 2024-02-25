@@ -1,4 +1,4 @@
-from functions import retrieve_data
+from src.utils import retrieve_data
 from pandas import read_parquet, DataFrame, concat, read_pickle
 from tqdm import tqdm
 from time import sleep
@@ -9,10 +9,9 @@ from os import getenv
 from dotenv import load_dotenv
 load_dotenv()
 
-
 API_KEY = getenv('API_KEY')
 
-if __name__ == "__main__":
+def request_data():
     df = read_parquet('data/data_4.parquet',
                       columns=['db_id', 'title', 'year']
                       )

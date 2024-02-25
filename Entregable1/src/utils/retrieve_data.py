@@ -1,5 +1,4 @@
 from requests import get as get_request
-from time import sleep
 
 GENERAL_FIELDS = [
     'paperId',
