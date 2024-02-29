@@ -83,9 +83,12 @@ def request_data(chunk_size=3):
     cons_df = read_pickle('data/api_request_results/connections_catalogue.zip')
     
     print("Original len: ", len(cons_df))
-
-    already_cons = read_pickle('data/api_request_results/retrieved_data_connections.zip')
-
+    
+    try:
+        already_cons = read_pickle('data/api_request_results/retrieved_data_connections.zip')
+    except FileNotFoundError:
+        already_cons = DataFrame(columns=cons_df.columns)
+        
     df = cons_df[~cons_df['paperId'].isin(already_cons['paperId'])]
     df = df.sample(len(df), ignore_index=True)
     print("Actual len: ", len(df))
