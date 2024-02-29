@@ -86,15 +86,35 @@ def request_data(chunk_size=3):
     
     try:
         already_cons = read_pickle('data/api_request_results/retrieved_data_connections.zip')
+        
     except FileNotFoundError:
-        already_cons = DataFrame(columns=cons_df.columns)
+        
+        already_files = [read_pickle(f) for f in tqdm(glob('data/api_request_results/connections/*'))]
+        
+        if len(already_files) > 0:
+            
+            print("Creando archivo de conexiones ya descargadas")
+        
+            already_cons = concat(
+                        already_files
+                        )
+        
+            already_cons.to_pickle('data/api_request_results/retrieved_data_connections.zip', 
+                                        compression= {
+                                        'method': 'zip',
+                                        'compresslevel': 9  # Nivel máximo de compresión para ZIP
+                                        }
+                                )
+        else:
+            print("No se encontraron archivos de conexiones ya descargadas")
+            
+            already_cons = DataFrame(columns=cons_df.columns)
         
     df = cons_df[~cons_df['paperId'].isin(already_cons['paperId'])]
     df = df.sample(len(df), ignore_index=True)
     print("Actual len: ", len(df))
 
-    del already_cons
-    del cons_df
+    del already_cons, cons_df, retrieved_data
 
     sub_lists = chunk_list(df['paperId'].to_list(), chunk_size=chunk_size)
 
