@@ -162,4 +162,5 @@ cython_debug/
 
 retrieved_data.zip
 dict_split_4.json
-*.zip
+connections_catalogue.zip
+retrieved_data*

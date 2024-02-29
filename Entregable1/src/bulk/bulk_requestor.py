@@ -68,3 +68,5 @@ def request_data():
                                 'compresslevel': 9  # Nivel máximo de compresión para ZIP
                                 }
                         )
+    
+    del retrieved_data

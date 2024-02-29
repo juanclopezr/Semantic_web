@@ -37,7 +37,7 @@ def main():
         print("Creating connections catalogue")
         connections_requestor.create_connections_catalogue()
         while True:
-            connections_requestor.request_data()
+            connections_requestor.request_data(chunk_size=6)
             print("Sleeping for 10 minutes")
             sleep(600)
 
