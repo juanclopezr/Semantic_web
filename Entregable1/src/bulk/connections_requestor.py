@@ -114,7 +114,7 @@ def request_data(chunk_size=3):
     df = df.sample(len(df), ignore_index=True)
     print("Actual len: ", len(df))
 
-    del already_cons, cons_df, retrieved_data
+    del already_cons, cons_df
 
     sub_lists = chunk_list(df['paperId'].to_list(), chunk_size=chunk_size)
 
