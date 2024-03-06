@@ -3,6 +3,4 @@ python-dotenv==1.0.1
 tqdm==4.66.2
 pandas==2.2.1
 thefuzz==0.22.1
-aiofiles==23.2.1
-aiohttp==3.9.3
 
