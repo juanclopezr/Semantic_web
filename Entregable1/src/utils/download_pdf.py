@@ -17,7 +17,7 @@ def download_pdf():
     
     for url, name in tqdm(urls_name):
         try:
-            req = get_request(url)
+            req = get_request(url, timeout=60)
             if req.status_code == 200:
                 with open('./data/pdf/' + name + '.pdf', 'wb') as f:
                     f.write(req.content)
