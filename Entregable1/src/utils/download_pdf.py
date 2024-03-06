@@ -9,9 +9,11 @@ def download_pdf():
     Lee un catálogo de archivos PDF desde un archivo Parquet y compara con los archivos ya descargados.
     """
     files = [f.split('/')[-1][:-4] for f in glob('./data/pdf/*.pdf')]
-
+    
     catalogue = read_parquet('./data/api_request_results/pdf_catalogue.parquet')
-    catalogue = catalogue[~catalogue['pdf_url'].isin(files)]
+    print('Total pdfs: ', len(catalogue))
+    catalogue = catalogue[~catalogue['paperId'].isin(files)]
+    print('Pdfs restantes: ', len(catalogue))
 
     urls_name = catalogue[['pdf_url', 'paperId']].values.tolist()
     
