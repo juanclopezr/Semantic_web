@@ -24,7 +24,6 @@ def download_pdf():
             else:
                 raise Exception('Error')
         except Exception as e:
-            print(e)
             print(f'Error downloading {url}')
             pass
 
